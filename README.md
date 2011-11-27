@@ -1,0 +1,3 @@
+
+# Simulation von Mensakassen (Synchronisation über Mensakassen)
+Es soll ein Programm zur Simulation von mehreren Mensakassen entwickelt werden. Wenn ein Student bezahlen möchte, geht er zu Kasse, an der die wenigsten Studenten warten (falls es Warteschlangen gibt). Wenn er an der Reihe ist, bezahlt er. Während der Bezahlphase ist die Kasse für ihn in exklusivem Zugriff, d.h. für andere Studenten gesperrt. Nachdem er bezahlt hat, isst er (Dauer: Zufallszeit) und kommt irgendwann wieder (ebenfalls nach einer Zufallszeit)
