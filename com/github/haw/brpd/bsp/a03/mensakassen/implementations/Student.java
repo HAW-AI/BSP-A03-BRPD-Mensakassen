@@ -23,7 +23,7 @@ public class Student extends Thread {
 	}
 	
 	public void run() {
-		while (true) {
+		while (!this.isInterrupted()) {
 			switch (state) {
 			case CASHPOINT:
 				Kasse cashpoint;
@@ -32,13 +32,13 @@ public class Student extends Thread {
 					try {
 						cashpoint.accuire();
 					} catch (InterruptedException e1) {
-						System.out.println("Uh? Can't accuire cashpoint");
+						return;
 					}
 					// process paymant ...
 					try {
 						Thread.sleep(Kasse.DEFAULT_PAYMENT_DELAY);
 					} catch (InterruptedException e) {
-						System.out.println("Can't wait for my food. Payment delay skiped");
+						return;
 					} 
 					// release cashpoint
 					cashpoint.release();
@@ -49,7 +49,7 @@ public class Student extends Thread {
 					try {
 						Thread.sleep(CASHPOINT_SEARCH_DELAY);
 					} catch (InterruptedException e) {
-						System.out.println(this + " can't wait to search for another cashpoint");
+						return;
 					}
 					continue;
 				}
@@ -71,7 +71,7 @@ public class Student extends Thread {
 		try {
 			Thread.sleep((long)(Math.random() * 10000));
 		} catch (InterruptedException e) {
-			System.out.println("gna, can't sleep");
+			this.interrupt();
 		}
 	}
 	

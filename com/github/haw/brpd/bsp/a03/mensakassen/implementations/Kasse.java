@@ -23,7 +23,6 @@ public class Kasse {
 	
 	public void accuire() throws InterruptedException {
 		this.semaphore.acquire();
-		
 	}
 	
 	public void release() {

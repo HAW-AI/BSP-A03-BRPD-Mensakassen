@@ -3,7 +3,7 @@ package com.github.haw.brpd.bsp.a03.mensakassen.implementations;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Mensa {
+public class Mensa extends Thread {
 	public static final int DEFAULT_NUMBER_OF_CASHPOINTS = 3;
 	private List<Kasse> cashpoints;
 	private List<Student> students;
@@ -27,10 +27,14 @@ public class Mensa {
 		for (Student s : students) {
 			s.start();
 		}
+		super.start();
 	}
 	public void interrupt() {
-		for (Student s : students) {
-			s.interrupt();
+		synchronized (this) {
+			for (Student s : students) {
+				s.interrupt();
+			}
+			super.interrupt();
 		}
 	}
 	
